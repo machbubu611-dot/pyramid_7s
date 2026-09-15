@@ -139,6 +139,68 @@
     text-anchor: middle;
     dominant-baseline: central;
   }
+
+  /* ---- 儲存圖片彈窗 ---- */
+  .save-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .save-modal.open { display: flex; }
+
+  .save-modal-inner {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .save-modal-hint {
+    font-size: 13px;
+    color: #4b5563;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .save-modal-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    display: block;
+  }
+
+  .save-modal-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .save-modal-actions .btn {
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .save-modal-loading {
+    font-size: 14px;
+    color: #6b7280;
+    padding: 30px 0;
+  }
 </style>
 </head>
 <body>
@@ -214,46 +276,46 @@
         <text id="val-L" x="285" y="451" font-size="19" fill="#1f2937">-</text>
       </g>
 
-      <!-- ===== 上方延伸計算：中間（洋紅） ===== -->
+      <!-- ===== 上方延伸計算：中間（洋紅），對稱三角排列 ===== -->
       <g class="node-box">
-        <rect x="179" y="42" width="42" height="36" rx="4" fill="#e83ae0"/>
-        <text id="val-magentaTop" x="200" y="61" font-size="19" fill="#1f2937">-</text>
+        <rect x="179" y="37" width="42" height="36" rx="4" fill="#e83ae0"/>
+        <text id="val-magentaTop" x="200" y="55" font-size="19" fill="#1f2937">-</text>
       </g>
       <g class="node-box">
-        <rect x="151" y="107" width="42" height="36" rx="4" fill="#e83ae0"/>
-        <text id="val-magentaLeft" x="172" y="126" font-size="19" fill="#1f2937">-</text>
+        <rect x="147" y="112" width="42" height="36" rx="4" fill="#e83ae0"/>
+        <text id="val-magentaLeft" x="168" y="130" font-size="19" fill="#1f2937">-</text>
       </g>
       <g class="node-box">
-        <rect x="207" y="107" width="42" height="36" rx="4" fill="#e83ae0"/>
-        <text id="val-magentaRight" x="228" y="126" font-size="19" fill="#1f2937">-</text>
-      </g>
-
-      <!-- ===== 上方延伸計算：左側（橘） ===== -->
-      <g class="node-box">
-        <rect x="74" y="77" width="42" height="36" rx="4" fill="#f5a623"/>
-        <text id="val-orangeTop" x="95" y="96" font-size="19" fill="#1f2937">-</text>
-      </g>
-      <g class="node-box">
-        <rect x="49" y="142" width="42" height="36" rx="4" fill="#f5a623"/>
-        <text id="val-orangeLeft" x="70" y="161" font-size="19" fill="#1f2937">-</text>
-      </g>
-      <g class="node-box">
-        <rect x="109" y="142" width="42" height="36" rx="4" fill="#f5a623"/>
-        <text id="val-orangeRight" x="130" y="161" font-size="19" fill="#1f2937">-</text>
+        <rect x="211" y="112" width="42" height="36" rx="4" fill="#e83ae0"/>
+        <text id="val-magentaRight" x="232" y="130" font-size="19" fill="#1f2937">-</text>
       </g>
 
-      <!-- ===== 上方延伸計算：右側（青） ===== -->
+      <!-- ===== 上方延伸計算：左側（橘），對稱三角排列 ===== -->
       <g class="node-box">
-        <rect x="284" y="77" width="42" height="36" rx="4" fill="#29b6f6"/>
-        <text id="val-cyanTop" x="305" y="96" font-size="19" fill="#1f2937">-</text>
+        <rect x="69" y="72" width="42" height="36" rx="4" fill="#f5a623"/>
+        <text id="val-orangeTop" x="90" y="90" font-size="19" fill="#1f2937">-</text>
       </g>
       <g class="node-box">
-        <rect x="249" y="142" width="42" height="36" rx="4" fill="#29b6f6"/>
-        <text id="val-cyanLeft" x="270" y="161" font-size="19" fill="#1f2937">-</text>
+        <rect x="37" y="147" width="42" height="36" rx="4" fill="#f5a623"/>
+        <text id="val-orangeLeft" x="58" y="165" font-size="19" fill="#1f2937">-</text>
       </g>
       <g class="node-box">
-        <rect x="309" y="142" width="42" height="36" rx="4" fill="#29b6f6"/>
-        <text id="val-cyanRight" x="330" y="161" font-size="19" fill="#1f2937">-</text>
+        <rect x="101" y="147" width="42" height="36" rx="4" fill="#f5a623"/>
+        <text id="val-orangeRight" x="122" y="165" font-size="19" fill="#1f2937">-</text>
+      </g>
+
+      <!-- ===== 上方延伸計算：右側（青），對稱三角排列 ===== -->
+      <g class="node-box">
+        <rect x="289" y="72" width="42" height="36" rx="4" fill="#29b6f6"/>
+        <text id="val-cyanTop" x="310" y="90" font-size="19" fill="#1f2937">-</text>
+      </g>
+      <g class="node-box">
+        <rect x="257" y="147" width="42" height="36" rx="4" fill="#29b6f6"/>
+        <text id="val-cyanLeft" x="278" y="165" font-size="19" fill="#1f2937">-</text>
+      </g>
+      <g class="node-box">
+        <rect x="321" y="147" width="42" height="36" rx="4" fill="#29b6f6"/>
+        <text id="val-cyanRight" x="342" y="165" font-size="19" fill="#1f2937">-</text>
       </g>
 
       <!-- ===== 底部原始出生日期 ===== -->
@@ -275,6 +337,23 @@
   </div>
 </div>
 
+<!-- 儲存圖片彈窗：手機可長按圖片儲存到相簿 -->
+<div class="save-modal" id="save-modal">
+  <div class="save-modal-inner">
+    <p class="save-modal-hint">
+      📱 手機：長按下方圖片，選擇「儲存圖片」即可存到相簿<br>
+      💻 電腦：點選下方「下載圖片」按鈕
+    </p>
+    <div id="save-modal-body">
+      <p class="save-modal-loading">圖片產生中，請稍候…</p>
+    </div>
+    <div class="save-modal-actions">
+      <a id="save-modal-download" class="btn btn-purple" download="七秒讀心術金字塔圖.png" style="display:none;">下載圖片</a>
+      <button type="button" id="save-modal-close" class="btn btn-dark">關閉</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const elYear = document.getElementById('year');
   const elMonth = document.getElementById('month');
@@ -285,6 +364,11 @@
   const btnGenerate = document.getElementById('btn-generate');
   const btnClear = document.getElementById('btn-clear');
   const btnSave = document.getElementById('btn-save');
+
+  const saveModal = document.getElementById('save-modal');
+  const saveModalBody = document.getElementById('save-modal-body');
+  const saveModalDownload = document.getElementById('save-modal-download');
+  const saveModalClose = document.getElementById('save-modal-close');
 
   const ALL_VAL_IDS = [
     'val-I','val-J','val-K','val-L','val-M','val-N','val-O',
@@ -381,22 +465,40 @@
   btnGenerate.addEventListener('click', tryCalculate);
   btnClear.addEventListener('click', clearAll);
 
+  // 開啟儲存彈窗並產生圖片（手機可長按儲存，電腦可點下載）
   btnSave.addEventListener('click', async () => {
     const target = document.getElementById('chart-canvas');
     const name = elName.value.trim() || '七秒讀心術金字塔圖';
+
+    saveModalBody.innerHTML = '<p class="save-modal-loading">圖片產生中，請稍候…</p>';
+    saveModalDownload.style.display = 'none';
+    saveModal.classList.add('open');
 
     try {
       const canvas = await html2canvas(target, {
         scale: 2,
         backgroundColor: '#ffffff'
       });
-      const link = document.createElement('a');
-      link.download = `${name}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      const dataUrl = canvas.toDataURL('image/png');
+
+      const img = document.createElement('img');
+      img.src = dataUrl;
+      img.alt = name;
+      img.className = 'save-modal-img';
+      saveModalBody.innerHTML = '';
+      saveModalBody.appendChild(img);
+
+      saveModalDownload.href = dataUrl;
+      saveModalDownload.download = `${name}.png`;
+      saveModalDownload.style.display = 'flex';
     } catch (err) {
       console.error('截圖生成失敗:', err);
+      saveModalBody.innerHTML = '<p class="save-modal-loading">圖片產生失敗，請重試。</p>';
     }
+  });
+
+  saveModalClose.addEventListener('click', () => {
+    saveModal.classList.remove('open');
   });
 </script>
 </body>
